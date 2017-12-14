@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Création d'un nouveau Contrat Client</title>
+        <h:outputStylesheet library="css" name="styles.css"/> 
+    </h:head>
+    <h:body>
+        
+      <ui:include src="c000_menu.xhtml" />    
+     <h:form>   
+         <p:separator/>  
+         <p:panelGrid columns="2">
+            <p:outputLabel value="N° Client" for="numcli"/>            
+            <p:inputText  id="numcli" value="#{c201_ContCreerContrat.numcli}"    
+                          required="true" requiredMessage="Entrez un n° de client">
+               <p:ajax event="keyup" listener="#{c201_ContCreerContrat.rechercherClient()}" 
+                       update="infosClient"/>
+            </p:inputText>
+           
+         </p:panelGrid>
+         
+         <p:separator/>
+         
+         <p:panelGrid  id="infosClient" columns="2">
+             <h:outputLabel value="Nom Client"/>
+             <h:outputText value="#{c201_ContCreerContrat.client.nom}" /> 
+             <h:outputLabel value="Ville Client"/>
+             <h:outputText value="#{c201_ContCreerContrat.client.adresse}" /> 
+             <h:outputLabel value="Distance en KM"/>
+             <h:outputText value="#{c201_ContCreerContrat.client.distanceKM}" /> 
+         </p:panelGrid> 
+         
+         <p:separator/>
+     
+         <p:panelGrid columns="2">
+            
+     
+            <p:outputLabel value="Date contrat" for="datecont"/>
+            <p:calendar id="datecont" value="#{c201_ContCreerContrat.contrat.dateCont}" required="true" />
+            
+            <p:outputLabel value="Montant du contrat" for="montantcont"/>
+            <p:inputText id="montantcont" value="#{c201_ContCreerContrat.contrat.montantContrat}" 
+                         required="true" validatorMessage="Il faut entrer le montant du contrat"/>
+            
+            <h:outputLabel value="N° du Contrat créé"/>
+            <h:outputText value="#{c201_ContCreerContrat.contrat.numero}"/>
+        </p:panelGrid>
+        
+        <p:separator/>
+        
+        <p:commandButton value="Valider"  disabled="#{ c201_ContCreerContrat.fait}" action="#{c201_ContCreerContrat.traiter()}"  update="@all" />
+        <p:commandButton value="Nouveau"  disabled="#{!c201_ContCreerContrat.fait}" action="#{c201_ContCreerContrat.raz()}"      update="@all" />
+     </h:form> 
+    
+    </h:body>
+</html>
+

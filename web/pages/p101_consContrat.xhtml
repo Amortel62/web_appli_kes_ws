@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        
+      <title >Consultation des Contrats</title>
+      <h:outputStylesheet library="css" name="styles.css"/> 
+       
+    </h:head>
+    
+   
+    <h:body>
+      
+       <ui:include src="c000_menu.xhtml" /> 
+      
+       <h:form>
+             
+           <f:view locale="#{c000_ContMenu.langue}">
+           
+           <p:separator   />     
+           
+           <p:panelGrid columns="3" >
+                    
+               <p:outputLabel value="#{msgs.numcont}" for="numcont"/>
+              
+               <p:inputText   id="numcont"   value="#{c101_ContConsContrat.numcont}" >
+                  
+              </p:inputText>
+              
+              <p:commandButton value="OK"   action="#{c101_ContConsContrat.rechercher}" 
+                                            update="@all"/>  
+                
+           </p:panelGrid>
+           
+           <p:separator />   
+           
+           <p:panelGrid columns="2"  style=" text-align: right ">
+                    
+               <p:outputLabel value="#{msgs.nomcli}" />
+               <h:outputText   value="#{c101_ContConsContrat.contrat.leClient.nom}" />
+                                        
+               <p:outputLabel  value="Date Contrat" />
+               <h:outputText   value="#{c101_ContConsContrat.contrat.dateCont}" > 
+                  <f:convertDateTime pattern="dd/MM/yyyy"  timeZone="Europe/Paris"/>
+               </h:outputText> 
+                   
+               <p:outputLabel value="Montant Contrat" />    
+               <h:outputText   value="#{c101_ContConsContrat.contrat.montantContrat}">
+                  <f:convertNumber type="currency" currencySymbol="€" 
+                                   groupingUsed="true" 
+                                   minFractionDigits="2" minIntegerDigits="3"/>
+               </h:outputText> 
+                       
+               <p:outputLabel value="Total Interventions" /> 
+               <h:outputText   value="#{c101_ContConsContrat.contrat.coutTotalContrat() }" >
+                  <f:convertNumber type="currency" currencySymbol="€" groupingUsed="true" 
+                                   minFractionDigits="2"  minIntegerDigits="3"/>
+               </h:outputText> 
+               
+               <p:outputLabel value="Ecart" />
+                   
+               <h:outputText   value="#{c101_ContConsContrat.contrat.ecart()}" 
+                               style="color : #{c101_ContConsContrat.contrat.ecart() gt 0 ? 'green' : 'red'}" >
+                   
+                  <f:convertNumber type="currency" currencySymbol="€" groupingUsed="true" 
+                                   minFractionDigits="2" minIntegerDigits="3"/>
+                  
+                </h:outputText>
+                       
+            </p:panelGrid>
+            
+            <p:separator/>     
+                
+            <p:dataTable value="#{c101_ContConsContrat.contrat.lesInterventions}" var="interv" sortBy="#{interv.numero}"   >
+                
+               <p:column   headerText="N° Intervention"   > #{interv.numero} </p:column> 
+                
+               <p:column headerText="Date" >
+                 <h:outputText   value="#{interv.dateInterv}" >
+                    <f:convertDateTime pattern="dd/MM/yyyy"  timeZone="Europe/Paris"/>  
+                 </h:outputText> 
+               </p:column>
+                    
+               <p:column  headerText="Technicien" > #{interv.leTechnicien.nom}</p:column>
+                    
+               <p:column headerText="Coût" style="text-align: right">         
+                  <h:outputText   value="#{interv.coutInterv()}" >
+                    <f:convertNumber type="currency" currencySymbol="€" 
+                                     groupingUsed="true" 
+                                     minFractionDigits="2"/>
+                  </h:outputText> 
+               </p:column>
+                    
+             </p:dataTable>
+            
+            <p:separator /> 
+            
+        </f:view>
+        </h:form>   
+    </h:body>
+</html>
+

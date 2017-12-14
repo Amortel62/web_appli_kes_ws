@@ -1,0 +1,55 @@
+<ui:composition 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+ >
+  
+  <p:menubar > 
+            
+     <p:menuitem value="Accueil"  outcome="p001_index.xhtml"/>
+      
+      <p:submenu label="Clients">          
+             <p:menuitem  value="Consultation" url="#" /> 
+             <p:menuitem  value="Création"     outcome="p001_index.xhtml" />  
+             <p:menuitem  value="Modification" outcome="p001_index.xhtml" />    
+             <p:menuitem  value="Suppression"  outcome="p001_index.xhtml" />   
+     </p:submenu> 
+     
+     <p:submenu label="Contrats">          
+             <p:menuitem  value="Consultation" outcome="p101_consContrat.xhtml" /> 
+             <p:menuitem  value="Création"     outcome="p201_creerContrat.xhtml" />  
+             <p:menuitem  value="Modification" outcome="p001_index.xhtml" />    
+             <p:menuitem  value="Suppression"  outcome="p001_index.xhtml" />   
+     </p:submenu>
+         
+     <p:submenu label="Interventions">
+            <p:menuitem  value="Consultation"  outcome="p001_index.xhtml"/>        
+            <p:menuitem  value="Création"      outcome="p001_index.xhtml" />  
+            <p:menuitem  value="Modification"  outcome="p001_index.xhtml" />    
+            <p:menuitem  value="Suppression"   outcome="p001_index.xhtml" />    
+      </p:submenu>        
+      
+     <p:submenu label="Technicien">
+            <p:menuitem  value="Consultation"  outcome="p001_index.xhtml"/>        
+            <p:menuitem  value="Création"      outcome="p001_index.xhtml" />  
+            <p:menuitem  value="Modification"  outcome="p001_index.xhtml" />    
+            <p:menuitem  value="Suppression"   outcome="p001_index.xhtml" />    
+     </p:submenu> 
+     
+      <p:submenu label="Grade">
+            <p:menuitem  value="Consultation"  outcome="p001_index.xhtml"/>        
+            <p:menuitem  value="Création"      outcome="p001_index.xhtml" />  
+            <p:menuitem  value="Modification"  outcome="p001_index.xhtml" />    
+            <p:menuitem  value="Suppression"   outcome="p001_index.xhtml" />    
+      </p:submenu> 
+     
+     <p:submenu label="Statistiques"/>
+       
+     <p:submenu label="Langue">
+         
+         
+     </p:submenu>   
+   </p:menubar>    
+    
+</ui:composition>
